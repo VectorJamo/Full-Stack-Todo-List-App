@@ -46,8 +46,19 @@ export default function App(){
   const [currentState, setCurrentState] = useState(ADD_TASKS_STATE)
 
   useEffect(() => {
-    console.log(tasks)
-  })
+    // Send a GET request using the fetch API to get all the todo tasks from the database
+    fetch('http://localhost:3000/tasks')
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      console.log(data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+  }, [])
 
   function handleAddTask(task) {
     if(currentTsk != '') {

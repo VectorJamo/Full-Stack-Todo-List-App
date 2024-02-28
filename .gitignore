@@ -1,2 +1,3 @@
 /client/Todo-App/node_modules/
 /server/node_modules/
+/server/dbURI.txt
