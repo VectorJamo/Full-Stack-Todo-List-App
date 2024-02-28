@@ -1,0 +1,127 @@
+:root {
+    --color-red: crimson;
+    --color-green: rgb(29, 139, 29);
+    --color-blue: rgb(27, 99, 206);
+
+    --color-black: rgb(60, 60, 60); 
+    --color-white: rgb(230, 230, 230);
+    --color-grey: rgb(120, 120, 120);
+
+    --site-ff: 'Roboto';
+    --site--fw-regular: 400;
+    --site-fw-bold: 700;
+
+    --site-border-radius: 0.25rem;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: var(--site-ff);
+    font-weight: var(--site--fw-regular);
+}
+
+body {
+    height: 100vh;
+    background: var(--color-white);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-black);
+}
+h1 {
+    letter-spacing: 0.25rem;
+    text-align: center;
+    font-weight: var(--site--fw-bold);
+    margin-bottom: 1rem;
+}
+.header {
+    text-align: center;
+}
+.content {
+    border: 2px solid var(--color-grey);
+    padding: 2rem;
+    width: 40rem;
+
+    border-radius: var(--site-border-radius);
+}
+.tasks {
+    margin: 2rem 1rem;
+}
+.task {
+    margin: 0.5rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.done-button, .all-done-tasks-button {
+    background: var(--color-green);
+    color: var(--color-white);
+    border: 1px solid var(--color-grey);
+    cursor: pointer;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+    border-radius: var(--site-border-radius);
+}
+.remove-button, .all-removed-tasks-button {
+    background: var(--color-red);
+    color: var(--color-white);
+    border: 1px solid var(--color-grey);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--site-border-radius);
+    margin-right: 0.5rem;
+}
+.clear-button {
+    background: var(--color-green);
+    color: var(--color-white);
+    border: 1px solid var(--color-grey);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--site-border-radius);
+    margin-right: 0.5rem;
+}
+.content-footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+input[type='text'] {
+    width: 60%;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border: 2px solid var(--color-grey);
+    border-radius: var(--site-border-radius);
+}
+input[type='button'] {
+    padding: 0.5rem;
+    background: var(--color-blue);
+    color: var(--color-white);
+    border: 2px solid var(--color-grey);
+    cursor: pointer;
+    border-radius: var(--site-border-radius);
+}
+
+input[type='text']:focus {
+    outline: none;
+}
+
+input[type='button']:active, button:active {
+    transform: scale(1.05);
+}
+.blue-button {
+    background: var(--color-blue);
+    color: var(--color-white);
+    border: 1px solid var(--color-grey);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--site-border-radius);
+
+}
