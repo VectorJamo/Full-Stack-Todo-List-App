@@ -48,16 +48,27 @@ export default function App(){
   useEffect(() => {
     // Send a GET request using the fetch API to get all the todo tasks from the database
     fetch('http://localhost:3000/tasks')
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      console.log(data)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        // Parse JSON to Array of tasks
+        const arr = []
+        for(let i = 0; i < data.length; i++){
+          let obj = data[i]
+          for (let key in obj){
+            if(key == 'task'){
+              const value = obj[key]
+              arr.push(value)
+            }
+          }
+        }
+        console.log(arr)
+        setTasks(arr)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }, [])
 
   function handleAddTask(task) {
@@ -68,10 +79,29 @@ export default function App(){
   
       setCurrentTsk('')
     }
+
+    // TODO: Send request to send task to the database
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: task
+    }
+    fetch('http://localhost:3000/addTask', requestOptions)
+      .then(response => {
+          console.log('Successfully sent POST request')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    
   }
 
   function handleRemoveTask(taskIndex) {
     // Update the removed tasks array
+    const taskToRemove = tasks[taskIndex]
+
     let temp = removedTasks.slice()
     temp.push(tasks[taskIndex])
     setRemovedTasks(temp)
@@ -80,6 +110,24 @@ export default function App(){
     temp = tasks.slice()
     temp.splice(taskIndex, 1)
     setTasks(temp)
+
+    // TODO: Send request to remove task from the database
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: taskToRemove
+    }
+    fetch('http://localhost:3000/removeTask', requestOptions)
+      .then(response => {
+          console.log('Successfully sent POST request')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+
   }
   function handleDoneTask(taskIndex) {
     // Update the done tasks array
@@ -157,5 +205,4 @@ export default function App(){
       </div>
       );  
   }
-
 }
